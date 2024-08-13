@@ -1,30 +1,26 @@
 import styled from "styled-components";
 
+
 export const Container = styled.div`
     display: flex;
     height: 80%;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 20px;
     align-items: center;
 `
+export const Image = styled.img`
+  max-width: 90%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+`;
 
 export const ButtonContainer = styled.div`
     display: flex;
     width: 100%;
     gap: 20px;
-    justify-content: end;
-    `
-export const Title = styled.div`
-        
-    `
-export const PlayersContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 5px;
-    justify-items: center;
-    width: 80%;
+    justify-content: center;
 `
-
 export const PlayerCard = styled.div`
     display: flex;
     flex-direction: column;
@@ -40,5 +36,5 @@ export const PlayerImage = styled.img`
 
 export const PlayerName = styled.span`
     font-size: 1.2rem;
-    color: var(--text-color);
+    color: #fff;
 `;

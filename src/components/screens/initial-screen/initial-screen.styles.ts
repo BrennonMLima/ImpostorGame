@@ -4,7 +4,7 @@ export const Container = styled.div`
     display: flex;
     height: 80%;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 20px;
     align-items: center;
 `
 export const Image = styled.img`
@@ -19,4 +19,11 @@ export const ButtonContainer = styled.div`
     width: 100%;
     gap: 20px;
     justify-content: end;
+`
+export const TutorialContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+
 `

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const StyledButton = styled.button`
   padding: 10px 20px;
-  border: 0;
   background: var(--amarelo);
   border-radius: 0.5rem;
   display: flex;
@@ -12,6 +12,10 @@ export const StyledButton = styled.button`
   cursor: pointer;
   color: black;
 
+  & a{
+    text-decoration: none;
+  }
+
   &:focus {
     outline: none;
   }
@@ -19,6 +23,10 @@ export const StyledButton = styled.button`
   &.outline {
     background-color: transparent;
     border: 1px solid var(--amarelo);
-    color: #fff;
+    color: var(--amarelo);
   }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `;

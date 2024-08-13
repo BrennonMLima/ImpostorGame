@@ -24,7 +24,9 @@ export const PlayersContainer = styled.div`
 export const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    align-items: center;
+    gap: 30px;
+    width: 80%;
 `
 export const PlaceHolder = styled.label`
 position: absolute;
@@ -38,6 +40,27 @@ pointer-events: none;
 color: #999;
 `;
 
+export const Image = styled.img<{ isSelected: boolean }>`
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 10px;
+    border: 3px solid ${({ isSelected }) => (isSelected ? 'var(--amarelo)' : 'transparent')};
+    cursor: pointer;
+    transition: border 0.3s ease;
+
+    &:hover {
+        border: 3px solid var(--amarelo);
+    }
+`;
+
+export const ImageContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    justify-items: center;
+    width: 100%;
+`
 export const InputContainer = styled.div`
 position: relative;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputStyles, RadioStyles } from './styles';
+import { InputStyles, RadioStyles } from './input.styles';
 
 interface InputProps {
   type?: 'text' | 'image' | 'number' | 'password' | 'date' | 'radio';

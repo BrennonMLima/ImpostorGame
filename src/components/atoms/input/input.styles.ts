@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const InputStyles = styled.input`
-    background: #212528;
+    background: var(--cinza);
     border: 0.07rem solid #e3e3e3;
     box-shadow: 0rem 0.4rem 1.6rem rgba(22, 22, 22, 0.1);
     border-radius: 10px;
@@ -16,7 +16,7 @@ export const InputStyles = styled.input`
     }
 
     &.number-input {
-        background: --var(cinza-escuro);
+        background: --var(cinza);
         border: 0.07rem solid #e3e3e3;
         box-shadow: 0rem 0.4rem 1.6rem rgba(22, 22, 22, 0.1);
         border-radius: 10px;

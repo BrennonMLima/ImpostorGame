@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Image, ButtonContainer, TutorialContainer } from './initial-screen.styles';
+import { Container, ButtonContainer, Image, PlayerCard, PlayerImage, PlayerName } from '../reveal-screen/reaveal-screen.styles';
 import Button from '../../atoms/button/button';
 import { Heading, Description } from '../../atoms/text/text';
 
-const InitialScreen: React.FC = () => {
+const ReavealScreen: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const navigate = useNavigate();
+    const [players, setPlayers] = useState<{ id: number; name: string; avatar: string }[]>([]);
+
+    useEffect(() => {
+        const savedPlayers = JSON.parse(localStorage.getItem('players') || '[]');
+        setPlayers(savedPlayers);
+    }, []);
+
 
     const slides = [
         'Em "Impostor", uma palavra será revelada a todos os jogadores, exceto aos impostores.',
@@ -17,6 +24,11 @@ const InitialScreen: React.FC = () => {
         'Descubra quem está escondido entre vocês ou engane seus amigos para vencer o jogo!',
     ];
 
+    const player = {
+        id: 1,
+        name: 'Jão',
+        avatar: 'avatar1.png',
+    };
     const roundText = currentSlide < slides.length / 2 ? 'Primeira rodada' : 'Segunda rodada';
 
     const handleNextClick = () => {
@@ -35,22 +47,22 @@ const InitialScreen: React.FC = () => {
 
     return (
         <Container>
+            <Heading>Confirme sua indentidade!</Heading>
+            <PlayerCard key={player.id}>
+                <PlayerImage src={`${process.env.PUBLIC_URL}/images/${player.avatar}`} alt={player.name} />
+                <PlayerName>{player.name}</PlayerName>
+            </PlayerCard>
             <Image src={`${process.env.PUBLIC_URL}/image.png`} alt="Imagem de exemplo" />
-            <Heading>Bem-vindo ao Jogo!</Heading>
-            <TutorialContainer>
-                <h3>{roundText}</h3>
-                <Description>{slides[currentSlide]}</Description>
-            </TutorialContainer>
             <ButtonContainer>
                 {currentSlide > 0 && (
                     <Button onClick={handlePreviousClick} className='outline'>Anterior</Button>
                 )}
                 <Button onClick={handleNextClick}>
-                    {currentSlide < slides.length - 1 ? 'Próximo' : 'Começar'}
+                    {currentSlide < slides.length - 1 ? 'Revelar' : 'Começar'}
                 </Button>
             </ButtonContainer>
         </Container>
     );
 };
 
-export default InitialScreen;
+export default ReavealScreen;

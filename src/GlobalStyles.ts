@@ -29,7 +29,7 @@ font-family: 'Roboto Mono', sans-serif;
 :root {
 --background: #161a1d ;
 --preto: #0F0F0F; 
---cinza: #2D2E2E;
+--cinza: #212528;
 --amarelo: #FDCA40;
 --azul-escuro: #011936;
 --azul-claro: #3772FF;
@@ -38,14 +38,5 @@ font-family: 'Roboto Mono', sans-serif;
     h1,h2,h3,span,p,svg{
         background-color: transparent;
     }
-
-.action-icon{
-    cursor: pointer;
-    margin-left: 10px;
-    font-size: 18px;
-    &:hover {
-        color: var(--azul-escuro);
-    }
-}
 `;
 
