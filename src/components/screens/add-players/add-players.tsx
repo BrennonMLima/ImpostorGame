@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Container, ButtonContainer, PlayersContainer, Title, PlayerCard, PlayerImage, PlayerName } from './add-players.styles';
+import { Link } from 'react-router-dom';
+import { ButtonContainer, PlayersContainer, Title, PlayerCard, PlayerImage, PlayerName } from './add-players.styles';
 import { IoMdAddCircle } from "react-icons/io";
 import { Heading, Description } from '../../atoms/text/text';
 import Button from '../../atoms/button/button';
 import { StyledLink } from '../../atoms/button/button.styles';
+import { Container } from '../../atoms/container/container';
 
 const AddPlayers: React.FC = () => {
     const [players, setPlayers] = useState<{ id: number; name: string; avatar: string }[]>([]);

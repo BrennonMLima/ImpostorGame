@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Image, ButtonContainer, TutorialContainer } from './initial-screen.styles';
+import { Image, ButtonContainer, TutorialContainer, Header } from './initial-screen.styles';
 import Button from '../../atoms/button/button';
 import { Heading, Description } from '../../atoms/text/text';
+import { Container } from '../../atoms/container/container';
+import { FaUserSecret } from "react-icons/fa";
 
 const InitialScreen: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -35,8 +37,11 @@ const InitialScreen: React.FC = () => {
 
     return (
         <Container>
-            <Image src={`${process.env.PUBLIC_URL}/image.png`} alt="Imagem de exemplo" />
-            <Heading>Bem-vindo ao Jogo!</Heading>
+            <Header>
+                <Image src={`${process.env.PUBLIC_URL}/image.png`} alt="Imagem de exemplo" />
+                {/* <FaUserSecret fill='var(--amarelo)' size={150}></FaUserSecret> */}
+                <Heading>Bem-vindo ao Jogo!</Heading>
+            </Header>
             <TutorialContainer>
                 <h3>{roundText}</h3>
                 <Description>{slides[currentSlide]}</Description>
@@ -49,7 +54,7 @@ const InitialScreen: React.FC = () => {
                     {currentSlide < slides.length - 1 ? 'Próximo' : 'Começar'}
                 </Button>
             </ButtonContainer>
-        </Container>
+        </Container >
     );
 };
 

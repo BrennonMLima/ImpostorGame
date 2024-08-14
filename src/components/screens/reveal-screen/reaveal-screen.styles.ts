@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-
-export const Container = styled.div`
-    display: flex;
-    height: 80%;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-`
 export const Image = styled.img`
   max-width: 90%;
   height: auto;

@@ -1,65 +1,81 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, ButtonContainer, Image, PlayerCard, PlayerImage, PlayerName } from '../reveal-screen/reaveal-screen.styles';
+import { ButtonContainer, PlayerCard, PlayerImage, PlayerName } from '../reveal-screen/reaveal-screen.styles';
 import Button from '../../atoms/button/button';
 import { Heading, Description } from '../../atoms/text/text';
+import { Container } from '../../atoms/container/container';
 
 const ReavealScreen: React.FC = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
     const navigate = useNavigate();
     const [players, setPlayers] = useState<{ id: number; name: string; avatar: string }[]>([]);
+    const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+    const [isRevealed, setIsRevealed] = useState(false);
+    const [roundWord, setRoundWord] = useState('');
+    const [impostorIndex, setImpostorIndex] = useState<number | null>(null);
+
+    const words = ['Palavra1', 'Palavra2', 'Palavra3', 'Palavra4', 'Palavra5'];
 
     useEffect(() => {
         const savedPlayers = JSON.parse(localStorage.getItem('players') || '[]');
         setPlayers(savedPlayers);
+
+        if (savedPlayers.length > 0) {
+            const randomWord = words[Math.floor(Math.random() * words.length)];
+            setRoundWord(randomWord);
+
+            const impostorIdx = Math.floor(Math.random() * savedPlayers.length);
+            setImpostorIndex(impostorIdx);
+        }
     }, []);
 
-
-    const slides = [
-        'Em "Impostor", uma palavra será revelada a todos os jogadores, exceto aos impostores.',
-        'Cada jogador deve compartilhar algo sobre a palavra, enquanto os impostores tentam se passar por outros e ocultar sua identidade.',
-        'Ache um suspeito e se prepare para a segunda rodada!',
-        'Cada jogador deve fazer uma pergunta para os outros jogadores.',
-        'Os impostores devem usar sua criatividade para escapar da mira dos jogadores.',
-        'Descubra quem está escondido entre vocês ou engane seus amigos para vencer o jogo!',
-    ];
-
-    const player = {
-        id: 1,
-        name: 'Jão',
-        avatar: 'avatar1.png',
+    const handleRevealClick = () => {
+        setIsRevealed(true);
     };
-    const roundText = currentSlide < slides.length / 2 ? 'Primeira rodada' : 'Segunda rodada';
 
-    const handleNextClick = () => {
-        if (currentSlide < slides.length - 1) {
-            setCurrentSlide(currentSlide + 1);
+    const handleNextPlayer = () => {
+        if (currentPlayerIndex < players.length - 1) {
+            setCurrentPlayerIndex(currentPlayerIndex + 1);
+            setIsRevealed(false);
         } else {
             navigate('/addplayers');
         }
     };
 
-    const handlePreviousClick = () => {
-        if (currentSlide > 0) {
-            setCurrentSlide(currentSlide - 1);
-        }
-    };
+    const currentPlayer = players[currentPlayerIndex];
+
+    if (!currentPlayer) {
+        return (
+            <Container>
+                <Heading>Erro</Heading>
+                <Description>Nenhum jogador encontrado ou todos os jogadores já foram processados.</Description>
+                <Button onClick={() => navigate('/addplayers')}>Adicionar Jogadores</Button>
+            </Container>
+        );
+    }
 
     return (
         <Container>
-            <Heading>Confirme sua indentidade!</Heading>
-            <PlayerCard key={player.id}>
-                <PlayerImage src={`${process.env.PUBLIC_URL}/images/${player.avatar}`} alt={player.name} />
-                <PlayerName>{player.name}</PlayerName>
-            </PlayerCard>
-            <Image src={`${process.env.PUBLIC_URL}/image.png`} alt="Imagem de exemplo" />
-            <ButtonContainer>
-                {currentSlide > 0 && (
-                    <Button onClick={handlePreviousClick} className='outline'>Anterior</Button>
+            <Heading>Confirme sua identidade!</Heading>
+            <PlayerCard key={currentPlayer.id}>
+                {isRevealed ? (
+                    <Description>
+                        {currentPlayerIndex === impostorIndex
+                            ? 'Você é o Impostor!'
+                            : `A palavra secreta é: ${roundWord}`}
+                    </Description>
+                ) : (
+                    <>
+                        <PlayerImage src={`${process.env.PUBLIC_URL}/images/${currentPlayer.avatar}`} alt={currentPlayer.name} />
+                        <PlayerName>{currentPlayer.name}</PlayerName>
+                    </>
                 )}
-                <Button onClick={handleNextClick}>
-                    {currentSlide < slides.length - 1 ? 'Revelar' : 'Começar'}
-                </Button>
+            </PlayerCard>
+            <ButtonContainer>
+                {isRevealed ? (
+                    <Button className='large-button' onClick={handleNextPlayer}>Próximo</Button>
+                ) : (
+                    <Button className='large-button' onClick={handleRevealClick}>Revelar</Button>
+                )}
             </ButtonContainer>
         </Container>
     );

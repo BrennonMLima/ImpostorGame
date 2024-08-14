@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-    display: flex;
-    height: 80%;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-`
 export const Image = styled.img`
   max-width: 60%;
   height: auto;
@@ -26,4 +19,7 @@ export const TutorialContainer = styled.div`
   gap: 10px;
   align-items: center;
 
+`
+export const Header = styled.div`
+  
 `

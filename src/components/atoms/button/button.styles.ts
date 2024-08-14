@@ -25,6 +25,12 @@ export const StyledButton = styled.button`
     border: 1px solid var(--amarelo);
     color: var(--amarelo);
   }
+
+  &.large-button{
+    width: 80%;
+    padding: 15px 20px;
+  }
+  
 `;
 
 export const StyledLink = styled(Link)`

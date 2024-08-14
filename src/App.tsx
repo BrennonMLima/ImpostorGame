@@ -1,7 +1,7 @@
 import React from 'react';
 import GlobalStyles from './GlobalStyles';
 import InitialScreen from './components/screens/initial-screen/initial-screen';
-import AppRouter from './components/router/router';
+import AppRouter from './router/router';
 
 function App() {
   return (

@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Description, Heading } from '../../atoms/text/text';
-import { Container, ButtonContainer, FormContainer, InputContainer, PlaceHolder, Image, ImageContainer } from './save-player-styles';
+import { ButtonContainer, FormContainer, InputContainer, PlaceHolder, Image, ImageContainer } from './save-player-styles';
 import Button from '../../atoms/button/button';
 import Input from '../../atoms/input/input';
+import { Container } from '../../atoms/container/container';
 import { StyledLink } from '../../atoms/button/button.styles';
 
 const SavePlayer: React.FC = () => {
     const [name, setName] = useState('');
     const [selectedImage, setSelectedImage] = useState<string>('');
+    const [images, setImages] = useState<string[]>([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch(`${process.env.PUBLIC_URL}/images/avatars.json`)
+            .then(response => response.json())
+            .then(data => setImages(data))
+            .catch(error => console.error('Erro ao carregar as imagens:', error));
+    }, []);
 
     const handleImageClick = (image: string) => {
         setSelectedImage(image);
@@ -21,19 +30,15 @@ const SavePlayer: React.FC = () => {
 
     const handleSave = () => {
         const players = JSON.parse(localStorage.getItem('players') || '[]');
-
         const nextId = players.length > 0 ? players[players.length - 1].id + 1 : 1;
-
         const newPlayer = {
             id: nextId,
             name: name,
             avatar: selectedImage,
         };
-
         players.push(newPlayer);
         localStorage.setItem('players', JSON.stringify(players));
-
-        navigate('/addplayers')
+        navigate('/addplayers');
     };
 
     return (
@@ -51,7 +56,7 @@ const SavePlayer: React.FC = () => {
                 </InputContainer>
                 <Description>Foto de perfil:</Description>
                 <ImageContainer>
-                    {['avatar1.png', 'avatar2.png', 'avatar3.png', 'avatar4.png', 'avatar5.png'].map((image) => (
+                    {images.map((image) => (
                         <Image
                             key={image}
                             src={`${process.env.PUBLIC_URL}/images/${image}`}

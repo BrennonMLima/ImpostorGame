@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import InitialScreen from '../screens/initial-screen/initial-screen';
-import AddPlayers from '../screens/add-players/add-players';
-import SavePlayer from '../screens/save-player/save-player';
-import ReavealScreen from '../screens/reveal-screen/reaveal-screen';
+import InitialScreen from '../components/screens/initial-screen/initial-screen';
+import AddPlayers from '../components/screens/add-players/add-players';
+import SavePlayer from '../components/screens/save-player/save-player';
+import ReavealScreen from '../components/screens/reveal-screen/reaveal-screen';
 
 interface RouterProps {
 
