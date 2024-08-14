@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heading, Description } from '../../atoms/text/text';
-import { Container } from '../../atoms/container/container';
+import { Container, Header } from '../../atoms/container/container';
+import { GiDiscussion } from "react-icons/gi";
 import Button from '../../atoms/button/button';
 
 const Discussion: React.FC = () => {
@@ -29,7 +30,10 @@ const Discussion: React.FC = () => {
 
     return (
         <Container>
-            <Heading>Hora da discussão!</Heading>
+            <Header>
+                <Heading>Hora da discussão!</Heading>
+                <GiDiscussion fill='var(--amarelo)' size={120} />
+            </Header>
             <Description className='reveal'>
                 Restam {formatTime(timeLeft)} para decidir quem é o impostor!
             </Description>

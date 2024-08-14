@@ -18,6 +18,7 @@ export const PlayersContainer = styled.div`
     justify-items: center;
     width: 80%;
     margin-bottom: 30px;
+    
 `
 
 export const TrashIcon = styled.div`

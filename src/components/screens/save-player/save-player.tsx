@@ -38,7 +38,7 @@ const SavePlayer: React.FC = () => {
             name: name,
             avatar: selectedImage,
             score: score,
-            status: status
+            status: status,
         };
         players.push(newPlayer);
         localStorage.setItem('players', JSON.stringify(players));

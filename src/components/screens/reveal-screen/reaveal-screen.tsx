@@ -10,7 +10,7 @@ type WordCategories = 'lugares' | 'comidas' | 'objetos';
 
 const ReavealScreen: React.FC = () => {
     const navigate = useNavigate();
-    const [players, setPlayers] = useState<{ id: number; name: string; avatar: string }[]>([]);
+    const [players, setPlayers] = useState<{ id: number; name: string; avatar: string; score: number; status: boolean }[]>([]);
     const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
     const [isRevealed, setIsRevealed] = useState(false);
     const [roundWord, setRoundWord] = useState('');
@@ -31,7 +31,6 @@ const ReavealScreen: React.FC = () => {
 
     useEffect(() => {
         const savedPlayers = JSON.parse(localStorage.getItem('players') || '[]');
-        setPlayers(savedPlayers);
 
         if (savedPlayers.length > 0 && words) {
             const categories: WordCategories[] = ['lugares', 'comidas', 'objetos'];
@@ -43,6 +42,13 @@ const ReavealScreen: React.FC = () => {
 
             const impostorIdx = Math.floor(Math.random() * savedPlayers.length);
             setImpostorIndex(impostorIdx);
+
+            const updatedPlayers = savedPlayers.map((player: any, index: number) =>
+                index === impostorIdx ? { ...player, status: true } : { ...player, status: false }
+            );
+
+            setPlayers(updatedPlayers);
+            localStorage.setItem('players', JSON.stringify(updatedPlayers));
         }
     }, [words]);
 
