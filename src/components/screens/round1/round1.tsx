@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Heading, Description } from '../../atoms/text/text';
 import { Container } from '../../atoms/container/container';
-import { ButtonContainer } from './round1.styles';
 import Button from '../../atoms/button/button';
 
 const Round1: React.FC = () => {

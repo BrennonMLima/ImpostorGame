@@ -7,12 +7,6 @@ export const Image = styled.img`
   margin: 0 auto;
 `;
 
-export const ButtonContainer = styled.div`
-    display: flex;
-    width: 100%;
-    gap: 20px;
-    justify-content: center;
-`
 export const PlayerCard = styled.div`
     display: flex;
     flex-direction: column;

@@ -5,7 +5,10 @@ export const ButtonContainer = styled.div`
     width: 100%;
     gap: 20px;
     justify-content: end;
-    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--preto);
+    padding: 10px;
 `
 export const PlayersContainer = styled.div`
     display: grid;
@@ -53,6 +56,7 @@ export const ImageContainer = styled.div`
     gap: 15px;
     justify-items: center;
     width: 100%;
+    margin-bottom: 50px;
 `
 export const InputContainer = styled.div`
 position: relative;

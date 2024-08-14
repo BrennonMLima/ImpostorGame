@@ -20,6 +20,3 @@ export const TutorialContainer = styled.div`
   align-items: center;
 
 `
-export const Header = styled.div`
-  
-`

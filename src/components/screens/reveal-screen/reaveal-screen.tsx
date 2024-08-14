@@ -85,7 +85,8 @@ const ReavealScreen: React.FC = () => {
                     ) : (
                         <Container>
                             <Description className='reveal'>Categoria: {roundCategory}</Description>
-                            <Description className='reveal'>A palavra secreta é: {roundWord}</Description>
+                            <br />
+                            <Description className='reveal'>O segredo é: {roundWord}</Description>
                         </Container>
                     )
                 ) : (

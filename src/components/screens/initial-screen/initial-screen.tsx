@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Image, ButtonContainer, TutorialContainer, Header } from './initial-screen.styles';
+import { Image, ButtonContainer, TutorialContainer } from './initial-screen.styles';
 import Button from '../../atoms/button/button';
 import { Heading, Description } from '../../atoms/text/text';
-import { Container } from '../../atoms/container/container';
+import { Container, Header } from '../../atoms/container/container';
 import { FaUserSecret } from "react-icons/fa";
 
 const InitialScreen: React.FC = () => {
@@ -14,7 +14,7 @@ const InitialScreen: React.FC = () => {
         'Em "Impostor", uma palavra será revelada a todos os jogadores, exceto aos impostores.',
         'Cada jogador deve compartilhar algo sobre a palavra, enquanto os impostores tentam se passar por outros e ocultar sua identidade.',
         'Ache um suspeito e se prepare para a segunda rodada!',
-        'Serão sorteados dois jogadores para fazer duas perguntas, o jogador sorteado pode criar sua própria pergunta, ou utilizar a pergunta sorteada.',
+        'Serão sorteados dois jogadores para fazer duas perguntas, o jogador sorteado pode criar sua própria pergunta, ou utilizar a pergunta sorteada. (Eles não responderão a pergunta).',
         'Os impostores devem usar sua criatividade para escapar da mira dos jogadores.',
         'Descubra quem está escondido entre vocês ou engane seus amigos para vencer o jogo!',
     ];

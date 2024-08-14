@@ -6,6 +6,7 @@ export const ButtonContainer = styled.div`
     width: 100%;
     gap: 20px;
     justify-content: end;
+    padding: 10px;
     `
 export const Title = styled.div`
         
@@ -16,6 +17,7 @@ export const PlayersContainer = styled.div`
     gap: 5px;
     justify-items: center;
     width: 80%;
+    margin-bottom: 30px;
 `
 
 export const TrashIcon = styled.div`
@@ -32,13 +34,6 @@ export const PlayerCard = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-`;
-
-export const PlayerImage = styled.img`
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 8px;
 `;
 
 export const PlayerName = styled.span`

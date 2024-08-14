@@ -9,6 +9,8 @@ import { StyledLink } from '../../atoms/button/button.styles';
 
 const SavePlayer: React.FC = () => {
     const [name, setName] = useState('');
+    const [score, setScore] = useState(0);
+    const [status, setStatus] = useState(false)
     const [selectedImage, setSelectedImage] = useState<string>('');
     const [images, setImages] = useState<string[]>([]);
     const navigate = useNavigate();
@@ -35,6 +37,8 @@ const SavePlayer: React.FC = () => {
             id: nextId,
             name: name,
             avatar: selectedImage,
+            score: score,
+            status: status
         };
         players.push(newPlayer);
         localStorage.setItem('players', JSON.stringify(players));
