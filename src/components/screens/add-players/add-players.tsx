@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ButtonContainer, PlayersContainer, Title, PlayerCard, PlayerImage, PlayerName } from './add-players.styles';
+import { ButtonContainer, PlayersContainer, Title, PlayerCard, PlayerImage, PlayerName, TrashIcon } from './add-players.styles';
 import { IoMdAddCircle } from "react-icons/io";
+import { IoMdCloseCircle } from "react-icons/io";
 import { Heading, Description } from '../../atoms/text/text';
 import Button from '../../atoms/button/button';
 import { StyledLink } from '../../atoms/button/button.styles';
@@ -15,6 +16,12 @@ const AddPlayers: React.FC = () => {
         setPlayers(savedPlayers);
     }, []);
 
+    const handleDeletePlayer = (id: number) => {
+        const updatedPlayers = players.filter(player => player.id !== id);
+        setPlayers(updatedPlayers);
+        localStorage.setItem('players', JSON.stringify(updatedPlayers));
+    };
+
     return (
         <Container>
             <Title>
@@ -24,6 +31,9 @@ const AddPlayers: React.FC = () => {
             <PlayersContainer>
                 {players.map(player => (
                     <PlayerCard key={player.id}>
+                        <TrashIcon onClick={() => handleDeletePlayer(player.id)}>
+                            <IoMdCloseCircle fill='var(--amarelo)' size={30} />
+                        </TrashIcon>
                         <PlayerImage src={`${process.env.PUBLIC_URL}/images/${player.avatar}`} alt={player.name} />
                         <PlayerName>{player.name}</PlayerName>
                     </PlayerCard>

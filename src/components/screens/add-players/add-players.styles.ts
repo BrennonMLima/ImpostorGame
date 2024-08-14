@@ -18,10 +18,20 @@ export const PlayersContainer = styled.div`
     width: 80%;
 `
 
+export const TrashIcon = styled.div`
+    position: absolute;
+    top: 5px;
+    right: 5px;
+`;
+
 export const PlayerCard = styled.div`
+    position: relative;
+    width: 120px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 `;
 
 export const PlayerImage = styled.img`

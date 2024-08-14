@@ -14,7 +14,7 @@ const InitialScreen: React.FC = () => {
         'Em "Impostor", uma palavra será revelada a todos os jogadores, exceto aos impostores.',
         'Cada jogador deve compartilhar algo sobre a palavra, enquanto os impostores tentam se passar por outros e ocultar sua identidade.',
         'Ache um suspeito e se prepare para a segunda rodada!',
-        'Cada jogador deve fazer uma pergunta para os outros jogadores.',
+        'Serão sorteados dois jogadores para fazer duas perguntas, o jogador sorteado pode criar sua própria pergunta, ou utilizar a pergunta sorteada.',
         'Os impostores devem usar sua criatividade para escapar da mira dos jogadores.',
         'Descubra quem está escondido entre vocês ou engane seus amigos para vencer o jogo!',
     ];

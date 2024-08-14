@@ -12,4 +12,8 @@ export const Description = styled.p`
     color: #fff;
     text-align: center;
     padding: 0 1rem;
+
+    &.reveal{
+        font-size: 1.8rem;
+    }
 `;

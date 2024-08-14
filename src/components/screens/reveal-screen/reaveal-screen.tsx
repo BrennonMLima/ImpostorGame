@@ -4,6 +4,9 @@ import { ButtonContainer, PlayerCard, PlayerImage, PlayerName } from '../reveal-
 import Button from '../../atoms/button/button';
 import { Heading, Description } from '../../atoms/text/text';
 import { Container } from '../../atoms/container/container';
+import { FaUserSecret } from 'react-icons/fa';
+
+type WordCategories = 'lugares' | 'comidas' | 'objetos';
 
 const ReavealScreen: React.FC = () => {
     const navigate = useNavigate();
@@ -11,22 +14,37 @@ const ReavealScreen: React.FC = () => {
     const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
     const [isRevealed, setIsRevealed] = useState(false);
     const [roundWord, setRoundWord] = useState('');
+    const [roundCategory, setRoundCategory] = useState<WordCategories>('lugares');
     const [impostorIndex, setImpostorIndex] = useState<number | null>(null);
+    const [words, setWords] = useState<{ [key in WordCategories]: string[] }>({
+        lugares: [],
+        comidas: [],
+        objetos: []
+    });
 
-    const words = ['Palavra1', 'Palavra2', 'Palavra3', 'Palavra4', 'Palavra5'];
+    useEffect(() => {
+        fetch(`${process.env.PUBLIC_URL}/data/words.json`)
+            .then(response => response.json())
+            .then(data => setWords(data))
+            .catch(error => console.error('Erro ao carregar as palavras:', error));
+    }, []);
 
     useEffect(() => {
         const savedPlayers = JSON.parse(localStorage.getItem('players') || '[]');
         setPlayers(savedPlayers);
 
-        if (savedPlayers.length > 0) {
-            const randomWord = words[Math.floor(Math.random() * words.length)];
+        if (savedPlayers.length > 0 && words) {
+            const categories: WordCategories[] = ['lugares', 'comidas', 'objetos'];
+            const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+            setRoundCategory(randomCategory);
+
+            const randomWord = words[randomCategory][Math.floor(Math.random() * words[randomCategory].length)];
             setRoundWord(randomWord);
 
             const impostorIdx = Math.floor(Math.random() * savedPlayers.length);
             setImpostorIndex(impostorIdx);
         }
-    }, []);
+    }, [words]);
 
     const handleRevealClick = () => {
         setIsRevealed(true);
@@ -37,7 +55,7 @@ const ReavealScreen: React.FC = () => {
             setCurrentPlayerIndex(currentPlayerIndex + 1);
             setIsRevealed(false);
         } else {
-            navigate('/addplayers');
+            navigate('/round1');
         }
     };
 
@@ -58,11 +76,18 @@ const ReavealScreen: React.FC = () => {
             <Heading>Confirme sua identidade!</Heading>
             <PlayerCard key={currentPlayer.id}>
                 {isRevealed ? (
-                    <Description>
-                        {currentPlayerIndex === impostorIndex
-                            ? 'Você é o Impostor!'
-                            : `A palavra secreta é: ${roundWord}`}
-                    </Description>
+                    currentPlayerIndex === impostorIndex ? (
+                        <Container>
+                            <Description className='reveal'>Você é o Impostor!</Description>
+                            <FaUserSecret fill='var(--amarelo)' size={150}></FaUserSecret>
+                            <Description>Categoria: {roundCategory}</Description>
+                        </Container>
+                    ) : (
+                        <Container>
+                            <Description className='reveal'>Categoria: {roundCategory}</Description>
+                            <Description className='reveal'>A palavra secreta é: {roundWord}</Description>
+                        </Container>
+                    )
                 ) : (
                     <>
                         <PlayerImage src={`${process.env.PUBLIC_URL}/images/${currentPlayer.avatar}`} alt={currentPlayer.name} />
