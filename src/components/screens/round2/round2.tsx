@@ -19,7 +19,7 @@ const Round2: React.FC = () => {
     const [players, setPlayers] = useState<{ id: number; name: string; avatar: string }[]>([]);
     const [randomQuestion, setRandomQuestion] = useState<string | null>(null);
     const [randomPlayer, setRandomPlayer] = useState<{ id: number; name: string; avatar: string } | null>(null);
-    const [currentCategory, setCurrentCategory] = useState<QuestionCategories>('lugares');
+    const [currentCategory, setCurrentCategory] = useState<QuestionCategories | null>(null);
 
     useEffect(() => {
         fetch(`${process.env.PUBLIC_URL}/data/questions.json`)
@@ -32,12 +32,12 @@ const Round2: React.FC = () => {
         const savedPlayers = JSON.parse(localStorage.getItem('players') || '[]');
         setPlayers(savedPlayers);
 
-        if (savedPlayers.length > 0 && Object.keys(questions).length > 0) {
-            const categories: QuestionCategories[] = ['lugares', 'comidas', 'objetos'];
-            const randomCategory = categories[Math.floor(Math.random() * categories.length)];
-            setCurrentCategory(randomCategory);
+        const savedCategory = localStorage.getItem('roundCategory') as QuestionCategories;
 
-            const randomQuestion = questions[randomCategory][Math.floor(Math.random() * questions[randomCategory].length)];
+        if (savedPlayers.length > 0 && Object.keys(questions).length > 0 && savedCategory) {
+            setCurrentCategory(savedCategory);
+
+            const randomQuestion = questions[savedCategory][Math.floor(Math.random() * questions[savedCategory].length)];
             setRandomQuestion(randomQuestion);
 
             setRandomPlayer(savedPlayers[Math.floor(Math.random() * savedPlayers.length)]);
@@ -45,7 +45,7 @@ const Round2: React.FC = () => {
     }, [questions]);
 
     const handleNextQuestion = () => {
-        if (questionNumber < 2) {
+        if (currentCategory && questionNumber < 2) {
             const randomQuestion = questions[currentCategory][Math.floor(Math.random() * questions[currentCategory].length)];
             setRandomQuestion(randomQuestion);
             setRandomPlayer(players[Math.floor(Math.random() * players.length)]);

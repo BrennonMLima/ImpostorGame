@@ -5,6 +5,7 @@ import { Container } from '../../atoms/container/container';
 import { Description } from '../../atoms/text/text';
 import { RankingTable, TableRow, TableCell, PlayerImage, NameCell, PointsCell } from './results.styles';
 import Button from '../../atoms/button/button';
+import { ButtonContainer } from '../initial-screen/initial-screen.styles';
 
 type Player = {
     id: number;
@@ -42,9 +43,14 @@ const Results: React.FC = () => {
         }
     };
 
+    const handleEndGame = () => {
+        localStorage.removeItem('round');
+        navigate('/addplayers');
+    }
+
     return (
         <Container>
-            <Heading>{round < 5 ? 'Resultados da rodada:' : 'Resultados da partida:'}</Heading>
+            <Heading>{round < 5 ? `Resultados da ${round}ª rodada:` : 'Resultados da partida:'}</Heading>
             <RankingTable>
                 {players.map((player, index) => (
                     <TableRow key={player.id}>
@@ -59,9 +65,14 @@ const Results: React.FC = () => {
                     </TableRow>
                 ))}
             </RankingTable>
-            <Button className='large-button' onClick={handleNextStep}>
-                {round < 5 ? 'Ir para a próxima rodada' : 'Começar nova partida'}
-            </Button>
+            <ButtonContainer className='guess'>
+                <Button className='large-button' onClick={handleNextStep}>
+                    {round < 5 ? 'Ir para a próxima rodada' : 'Começar nova partida'}
+                </Button>
+                <Button onClick={handleEndGame} className='large-button outline'>
+                    Encerrar partida.
+                </Button>
+            </ButtonContainer>
         </Container>
     );
 };

@@ -19,7 +19,7 @@ const Guess: React.FC = () => {
         const impostorPlayer = savedPlayers.find((player: any) => player.status);
         setPlayers(savedPlayers);
         setImpostor(impostorPlayer);
-        const savedWord = localStorage.getItem('secretWord') || '';
+        const savedWord = localStorage.getItem('roundWord') || '';
         setSecretWord(savedWord);
     }, []);
 
@@ -47,10 +47,10 @@ const Guess: React.FC = () => {
             <Heading>Oportunidade para o impostor!</Heading>
             {secretRevealed ? (
                 <>
-                    <Heading>Acertou?</Heading>
+                    <Description className='reveal'>O segredo da rodada é:<br /> {secretWord}</Description>
                     <ButtonContainer className='guess'>
-                        <Button onClick={handleCorrectGuess} className='large-button'>Sim</Button>
-                        <Button onClick={handleIncorrectGuess} className='large-button outline'>Não</Button>
+                        <Button onClick={handleCorrectGuess} className='large-button'>Acertei!</Button>
+                        <Button onClick={handleIncorrectGuess} className='large-button outline'>Errei.</Button>
                     </ButtonContainer>
                 </>
             ) : (<>

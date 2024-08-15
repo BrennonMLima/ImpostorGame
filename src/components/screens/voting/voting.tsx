@@ -81,9 +81,7 @@ const Voting: React.FC = () => {
                     </PlayerCard>
                 ))}
             </PlayersContainer>
-            <ButtonContainer>
-                <Button onClick={handleConfirmVote}>Confirmar Voto</Button>
-            </ButtonContainer>
+            <Button onClick={handleConfirmVote} className='large-button'>Confirmar Voto</Button>
         </Container>
     );
 };

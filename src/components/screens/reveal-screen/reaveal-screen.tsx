@@ -49,6 +49,9 @@ const ReavealScreen: React.FC = () => {
 
             setPlayers(updatedPlayers);
             localStorage.setItem('players', JSON.stringify(updatedPlayers));
+
+            localStorage.setItem('roundWord', randomWord);
+            localStorage.setItem('roundCategory', randomCategory);
         }
     }, [words]);
 
