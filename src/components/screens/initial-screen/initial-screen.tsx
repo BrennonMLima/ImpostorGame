@@ -4,7 +4,6 @@ import { Image, ButtonContainer, TutorialContainer } from './initial-screen.styl
 import Button from '../../atoms/button/button';
 import { Heading, Description } from '../../atoms/text/text';
 import { Container, Header } from '../../atoms/container/container';
-import { FaUserSecret } from "react-icons/fa";
 
 const InitialScreen: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -17,9 +16,16 @@ const InitialScreen: React.FC = () => {
         'Serão sorteados dois jogadores para fazer duas perguntas, o jogador sorteado pode criar sua própria pergunta, ou utilizar a pergunta sorteada. (Eles não responderão a pergunta).',
         'Os impostores devem usar sua criatividade para escapar da mira dos jogadores.',
         'Descubra quem está escondido entre vocês ou engane seus amigos para vencer o jogo!',
+        'O jogo terá 5 rodadas no total. Ao final de cada rodada, os jogadores podem votar no suspeito. Se um jogador acertar o impostor, ele ganha 10 pontos.',
+        'Se o impostor não for descoberto, ele ganha 10 pontos. Caso ele acerte o segredo, ganhará mais 5 pontos',
+        'O jogador com mais pontos ao final das 5 rodadas será o vencedor!',
     ];
 
-    const roundText = currentSlide < slides.length / 2 ? 'Primeira rodada' : 'Segunda rodada';
+    const getSlideTitle = () => {
+        if (currentSlide < 3) return 'Primeira rodada';
+        if (currentSlide < 6) return 'Segunda rodada';
+        return 'Pontuação';
+    };
 
     const handleNextClick = () => {
         if (currentSlide < slides.length - 1) {
@@ -39,11 +45,10 @@ const InitialScreen: React.FC = () => {
         <Container>
             <Header>
                 <Image src={`${process.env.PUBLIC_URL}/image.png`} alt="Imagem de exemplo" />
-                {/* <FaUserSecret fill='var(--amarelo)' size={150}></FaUserSecret> */}
                 <Heading>Bem-vindo ao Jogo!</Heading>
             </Header>
             <TutorialContainer>
-                <h3>{roundText}</h3>
+                <h3>{getSlideTitle()}</h3>
                 <Description>{slides[currentSlide]}</Description>
             </TutorialContainer>
             <ButtonContainer>
@@ -54,7 +59,7 @@ const InitialScreen: React.FC = () => {
                     {currentSlide < slides.length - 1 ? 'Próximo' : 'Começar'}
                 </Button>
             </ButtonContainer>
-        </Container >
+        </Container>
     );
 };
 
