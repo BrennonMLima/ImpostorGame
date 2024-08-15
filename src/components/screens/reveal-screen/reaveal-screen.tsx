@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ButtonContainer, PlayerCard, PlayerImage, PlayerName } from '../reveal-screen/reaveal-screen.styles';
+import { ButtonContainer, PlayerCard, RevealImage, PlayerName } from '../reveal-screen/reaveal-screen.styles';
 import Button from '../../atoms/button/button';
 import { Heading, Description } from '../../atoms/text/text';
 import { Container } from '../../atoms/container/container';
@@ -97,7 +97,7 @@ const ReavealScreen: React.FC = () => {
                     )
                 ) : (
                     <>
-                        <PlayerImage src={`${process.env.PUBLIC_URL}/images/${currentPlayer.avatar}`} alt={currentPlayer.name} />
+                        <RevealImage src={`${process.env.PUBLIC_URL}/images/${currentPlayer.avatar}`} alt={currentPlayer.name} />
                         <PlayerName>{currentPlayer.name}</PlayerName>
                     </>
                 )}

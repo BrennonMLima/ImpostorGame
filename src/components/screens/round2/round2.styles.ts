@@ -10,4 +10,8 @@ export const PlayerRow = styled.div`
     display: flex;
     align-items: center;
     gap: 2px;
+
+    &.guess{
+        flex-direction: column;
+    }
 `

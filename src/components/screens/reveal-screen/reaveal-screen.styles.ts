@@ -19,7 +19,7 @@ export const PlayerCard = styled.div`
     align-items: center;
 `;
 
-export const PlayerImage = styled.img`
+export const RevealImage = styled.img`
     width: 150px;
     height: 150px;
     border-radius: 50%;

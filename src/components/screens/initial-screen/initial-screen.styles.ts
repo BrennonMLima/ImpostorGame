@@ -12,6 +12,11 @@ export const ButtonContainer = styled.div`
     width: 100%;
     gap: 20px;
     justify-content: end;
+
+    &.guess{
+      flex-direction: column;
+      align-items: center;
+    }
 `
 export const TutorialContainer = styled.div`
   display: flex;

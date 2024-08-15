@@ -13,7 +13,8 @@ type Player = {
     avatar: string;
     score: number;
     status: boolean;
-}
+    votes: number;
+};
 
 const Voting: React.FC = () => {
     const [players, setPlayers] = useState<Player[]>([]);
@@ -26,7 +27,6 @@ const Voting: React.FC = () => {
         setPlayers(savedPlayers);
     }, []);
 
-
     const handlePlayerClick = (id: number) => {
         setSelectedPlayerId(id);
     };
@@ -35,16 +35,26 @@ const Voting: React.FC = () => {
         const currentPlayer = players[currentPlayerIndex];
         const votedPlayer = players.find(player => player.id === selectedPlayerId);
 
-        if (votedPlayer && votedPlayer.status) {
-            currentPlayer.score += 10;
+        if (votedPlayer) {
+            votedPlayer.votes += 1;
+            if (votedPlayer.status) {
+                currentPlayer.score += 10;
+            }
         }
 
         if (currentPlayerIndex < players.length - 1) {
             setCurrentPlayerIndex(currentPlayerIndex + 1);
             setSelectedPlayerId(null);
         } else {
+            const impostor = players.find(player => player.status);
+            const maxVotes = Math.max(...players.map(player => player.votes));
+
+            if (impostor && impostor.votes <= maxVotes) {
+                impostor.score += 10;
+            }
+
             localStorage.setItem('players', JSON.stringify(players));
-            navigate('/addplayers');
+            navigate('/guess');
         }
     };
 
@@ -60,9 +70,8 @@ const Voting: React.FC = () => {
             <Heading>Vez de {currentPlayer.name} votar!</Heading>
             <PlayersContainer>
                 {remainingPlayers.map(player => (
-                    <PlayerCard>
+                    <PlayerCard key={player.id}>
                         <SelectableImage
-                            key={player.id}
                             src={`${process.env.PUBLIC_URL}/images/${player.avatar}`}
                             alt={player.name}
                             onClick={() => handlePlayerClick(player.id)}

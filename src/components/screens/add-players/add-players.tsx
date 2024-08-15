@@ -17,6 +17,8 @@ const AddPlayers: React.FC = () => {
     useEffect(() => {
         const savedPlayers = JSON.parse(localStorage.getItem('players') || '[]');
         setPlayers(savedPlayers);
+
+        localStorage.setItem('rounds', JSON.stringify(1));
     }, []);
 
     const handleDeletePlayer = (id: number) => {
@@ -29,6 +31,10 @@ const AddPlayers: React.FC = () => {
         if (players.length < 3) {
             setError('Adicione pelo menos 3 jogadores');
         } else {
+            const resetPlayers = players.map(player => ({ ...player, score: 0 }));
+            setPlayers(resetPlayers);
+            localStorage.setItem('players', JSON.stringify(resetPlayers));
+            localStorage.setItem('round', '1');
             navigate('/reveal');
         }
     };
