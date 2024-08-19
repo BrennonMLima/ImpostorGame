@@ -66,7 +66,7 @@ const Voting: React.FC = () => {
     const remainingPlayers = players.filter(player => player.id !== currentPlayer.id);
 
     return (
-        <Container>
+        <Container className='pulse-animation'>
             <Heading>Vez de {currentPlayer.name} votar!</Heading>
             <PlayersContainer>
                 {remainingPlayers.map(player => (

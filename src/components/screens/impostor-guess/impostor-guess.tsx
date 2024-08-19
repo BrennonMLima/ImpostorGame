@@ -43,7 +43,7 @@ const Guess: React.FC = () => {
     };
 
     return (
-        <Container>
+        <Container className='pulse-animation'>
             <Heading>Oportunidade para o impostor!</Heading>
             {secretRevealed ? (
                 <>

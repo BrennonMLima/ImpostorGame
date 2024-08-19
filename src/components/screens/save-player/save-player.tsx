@@ -49,30 +49,32 @@ const SavePlayer: React.FC = () => {
 
     return (
         <Container>
-            <Heading>Adicione um jogador!</Heading>
-            <FormContainer>
-                <InputContainer>
-                    <Input
-                        type="text"
-                        placeholder=" "
-                        onChange={handleNameChange}
-                        className={`text-input ${name ? 'filled' : ''}`}
-                    />
-                    <PlaceHolder>Nome</PlaceHolder>
-                </InputContainer>
-                <Description>Foto de perfil:</Description>
-                <ImageContainer>
-                    {images.map((image) => (
-                        <Image
-                            key={image}
-                            src={`${process.env.PUBLIC_URL}/images/${image}`}
-                            alt="Avatar"
-                            isSelected={selectedImage === image}
-                            onClick={() => handleImageClick(image)}
+            <Container className='pulse-animation'>
+                <Heading>Adicione um jogador!</Heading>
+                <FormContainer>
+                    <InputContainer>
+                        <Input
+                            type="text"
+                            placeholder=" "
+                            onChange={handleNameChange}
+                            className={`text-input ${name ? 'filled' : ''}`}
                         />
-                    ))}
-                </ImageContainer>
-            </FormContainer>
+                        <PlaceHolder>Nome</PlaceHolder>
+                    </InputContainer>
+                    <Description>Foto de perfil:</Description>
+                    <ImageContainer>
+                        {images.map((image) => (
+                            <Image
+                                key={image}
+                                src={`${process.env.PUBLIC_URL}/images/${image}`}
+                                alt="Avatar"
+                                isSelected={selectedImage === image}
+                                onClick={() => handleImageClick(image)}
+                            />
+                        ))}
+                    </ImageContainer>
+                </FormContainer>
+            </Container>
             <ButtonContainer>
                 <StyledLink to='/addplayers'><Button className='outline'>Voltar</Button></StyledLink>
                 <Button onClick={handleSave}>Salvar</Button>

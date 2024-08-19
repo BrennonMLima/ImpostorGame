@@ -8,7 +8,7 @@ const Round1: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <Container>
+        <Container className='pulse-animation'>
             <Heading>Primeira Rodada!</Heading>
             <Description className='reveal'>
                 Cada jogador deve falar uma palavra relacionada ao segredo!

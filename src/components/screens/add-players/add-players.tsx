@@ -44,7 +44,7 @@ const AddPlayers: React.FC = () => {
     };
 
     return (
-        <Container>
+        <Container className='pulse-animation'>
             <Title>
                 <Heading>Adicione os jogadores!</Heading>
                 <Description>(adicione na ordem de jogo)</Description>

@@ -81,7 +81,7 @@ const ReavealScreen: React.FC = () => {
     }
 
     return (
-        <Container>
+        <Container className='pulse-animation'>
             <Heading>Confirme sua identidade!</Heading>
             <PlayerCard key={currentPlayer.id}>
                 {isRevealed ? (

@@ -49,7 +49,7 @@ const Results: React.FC = () => {
     }
 
     return (
-        <Container>
+        <Container className='pulse-animation'>
             <Heading>{round < 5 ? `Resultados da ${round}ª rodada:` : 'Resultados da partida:'}</Heading>
             <RankingTable>
                 {players.map((player, index) => (

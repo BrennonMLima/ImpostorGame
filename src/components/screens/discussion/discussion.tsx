@@ -29,7 +29,7 @@ const Discussion: React.FC = () => {
     };
 
     return (
-        <Container>
+        <Container className='pulse-animation'>
             <Header>
                 <Heading>Hora da discussão!</Heading>
                 <GiDiscussion fill='var(--amarelo)' size={120} />

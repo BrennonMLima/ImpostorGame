@@ -38,5 +38,32 @@ font-family: 'Roboto Mono', sans-serif;
     h1,h2,h3,span,p,svg{
         background-color: transparent;
     }
+
+    @keyframes fadeInSlideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulseIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.pulse-animation {
+    animation: pulseIn 0.1s linear;
+}
+
 `;
 

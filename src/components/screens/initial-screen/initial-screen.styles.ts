@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 export const Image = styled.img`
   max-width: 60%;
@@ -23,5 +23,27 @@ export const TutorialContainer = styled.div`
   flex-direction: column;
   gap: 10px;
   align-items: center;
-
 `
+const slideInLeft = keyframes`
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+`;
+
+const slideInRight = keyframes`
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+`;
+
+
+export const AnimatedTutorialContainer = styled(TutorialContainer) <{ direction: string }>`
+    animation: ${({ direction }) =>
+        direction === 'next' ? slideInLeft : slideInRight} 0.2s forwards;
+`;
