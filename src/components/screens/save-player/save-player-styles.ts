@@ -41,9 +41,10 @@ export const Image = styled.img<{ isSelected: boolean }>`
     height: 100px;
     border-radius: 50%;
     margin: 10px;
-    border: 3px solid ${({ isSelected }) => (isSelected ? 'var(--amarelo)' : 'transparent')};
+    border: 3px solid ${({ isSelected }) => (isSelected ? 'var(--amarelo)' : 'var(--cinza)')};
     cursor: pointer;
     transition: border 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
         border: 3px solid var(--amarelo);

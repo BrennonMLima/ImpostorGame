@@ -63,7 +63,7 @@ const SavePlayer: React.FC = () => {
                 <Description>Foto de perfil:</Description>
                 <ImageContainer>
                     {images.map((image) => (
-                        <Image
+                        <Image draggable="false"
                             key={image}
                             src={`${process.env.PUBLIC_URL}/images/${image}`}
                             alt="Avatar"
