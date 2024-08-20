@@ -6,6 +6,10 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    
+    &.slide{
+      overflow: hidden;
+    }
 `
 export const Header = styled.div`
   display: flex;

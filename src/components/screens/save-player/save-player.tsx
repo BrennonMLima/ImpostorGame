@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Description, Heading } from '../../atoms/text/text';
 import { ButtonContainer, FormContainer, InputContainer, PlaceHolder, Image, ImageContainer } from './save-player-styles';
 import Button from '../../atoms/button/button';
@@ -49,32 +49,30 @@ const SavePlayer: React.FC = () => {
 
     return (
         <Container>
-            <Container className='pulse-animation'>
-                <Heading>Adicione um jogador!</Heading>
-                <FormContainer>
-                    <InputContainer>
-                        <Input
-                            type="text"
-                            placeholder=" "
-                            onChange={handleNameChange}
-                            className={`text-input ${name ? 'filled' : ''}`}
+            <Heading>Adicione um jogador!</Heading>
+            <FormContainer>
+                <InputContainer>
+                    <Input
+                        type="text"
+                        placeholder=" "
+                        onChange={handleNameChange}
+                        className={`text-input ${name ? 'filled' : ''}`}
+                    />
+                    <PlaceHolder>Nome</PlaceHolder>
+                </InputContainer>
+                <Description>Foto de perfil:</Description>
+                <ImageContainer>
+                    {images.map((image) => (
+                        <Image
+                            key={image}
+                            src={`${process.env.PUBLIC_URL}/images/${image}`}
+                            alt="Avatar"
+                            isSelected={selectedImage === image}
+                            onClick={() => handleImageClick(image)}
                         />
-                        <PlaceHolder>Nome</PlaceHolder>
-                    </InputContainer>
-                    <Description>Foto de perfil:</Description>
-                    <ImageContainer>
-                        {images.map((image) => (
-                            <Image
-                                key={image}
-                                src={`${process.env.PUBLIC_URL}/images/${image}`}
-                                alt="Avatar"
-                                isSelected={selectedImage === image}
-                                onClick={() => handleImageClick(image)}
-                            />
-                        ))}
-                    </ImageContainer>
-                </FormContainer>
-            </Container>
+                    ))}
+                </ImageContainer>
+            </FormContainer>
             <ButtonContainer>
                 <StyledLink to='/addplayers'><Button className='outline'>Voltar</Button></StyledLink>
                 <Button onClick={handleSave}>Salvar</Button>

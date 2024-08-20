@@ -45,7 +45,7 @@ const InitialScreen: React.FC = () => {
     };
 
     return (
-        <Container className='pulse-animation'>
+        <Container className='pulse-animation slide'>
             <Header>
                 <Image src={`${process.env.PUBLIC_URL}/image.png`} alt="Imagem de exemplo" />
                 <Heading>Bem-vindo ao Jogo!</Heading>
