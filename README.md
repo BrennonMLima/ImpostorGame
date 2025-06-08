@@ -1,6 +1,6 @@
 # Impostor Game
 
-Bem-vindo ao **Impostor Game**, um jogo interativo onde os jogadores devem descobrir quem é o impostor entre eles! O jogo está disponível online em [impostor-game.vercel.app](https://impostor-game.vercel.app) e foi otimizado para dispositivos móveis.
+Bem-vindo ao **Impostor Game**, um jogo interativo onde os jogadores devem descobrir quem é o impostor entre eles! O jogo está disponível online em [impostor-game.vercel.app](https://impostor-game.vercel.app) e foi construido para dispositivos móveis.
 
 ## Visão Geral
 
